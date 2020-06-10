@@ -33,7 +33,7 @@ class Admin::UsersController < Admin::ApplicationController
     end
 
     if @user.update(user_params)
-      flash[:notice] = "Users has been updated."
+      flash[:notice] = "User has been updated."
       redirect_to admin_users_path
     else
       flash.now[:alert] = "User has not been updated."
