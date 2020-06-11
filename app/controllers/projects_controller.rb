@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   
 
   def show
+    authorize @project, :show?
   end
 
   def edit

@@ -2,8 +2,12 @@ require 'spec_helper'
 
 RSpec.feature "Editing projects" do
 
+  let(:user) { FactoryBot.create(:user) }
+  let(:project) { FactoryBot.create(:project, name: "TextMate 2") }
+
   before do
-    FactoryBot.create(:project, name: "TextMate 2")
+    login_as(user)
+    assign_role!(user, :viewer, project)
 
     visit "/"
     click_link "TextMate 2"
