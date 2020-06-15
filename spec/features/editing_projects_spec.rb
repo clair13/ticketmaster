@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-RSpec.feature "Editing projects" do
+RSpec.feature "Project managers can edit existing projects" do
 
   let(:user) { FactoryBot.create(:user) }
   let(:project) { FactoryBot.create(:project, name: "TextMate 2") }
 
   before do
     login_as(user)
-    assign_role!(user, :viewer, project)
+    assign_role!(user, :manager, project)
 
     visit "/"
     click_link "TextMate 2"
