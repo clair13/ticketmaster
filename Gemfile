@@ -28,6 +28,7 @@ gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'devise', '~> 4.2'
 gem 'pundit', '~> 1.1'
+gem 'carrierwave', '~> 2.0'
 
 
 # Use Redis adapter to run Action Cable in production
