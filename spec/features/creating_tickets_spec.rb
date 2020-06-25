@@ -40,13 +40,13 @@ RSpec.describe "Users can create new tickets" do
     expect(page).to have_content "Description is too short"
   end
 
-  scenario "with multiple attachments", js: true do
+  scenario "with multiple attachment", js: true do
     fill_in "Name", with: "Add documentation for blink tag"
     fill_in "Description", with: "Blink tag's speed attribute"
     attach_file "File #1", Rails.root.join("spec/fixtures/speed.txt")
     click_link "Add another file"
 
-    attach_file "File #2", Rails.root.join("spec/fixtures/spin.txt")
+    attach_file("File #2", Rails.root.join("spec/fixtures/spin.txt") ,make_visible: true)
     click_button "Create Ticket"
 
     expect(page).to have_content "Ticket has been created."
