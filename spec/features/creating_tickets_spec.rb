@@ -46,7 +46,7 @@ RSpec.describe "Users can create new tickets" do
     attach_file "File #1", Rails.root.join("spec/fixtures/speed.txt")
     click_link "Add another file"
 
-    attach_file("File #2", Rails.root.join("spec/fixtures/spin.txt") ,make_visible: true)
+    attach_file "File #2", Rails.root.join("spec/fixtures/spin.txt")
     click_button "Create Ticket"
 
     expect(page).to have_content "Ticket has been created."
