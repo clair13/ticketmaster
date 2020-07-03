@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_01_115951) do
+ActiveRecord::Schema.define(version: 2020_07_03_165514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,9 @@ ActiveRecord::Schema.define(version: 2020_07_01_115951) do
     t.bigint "author_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "state_id"
     t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["state_id"], name: "index_comments_on_state_id"
     t.index ["ticket_id"], name: "index_comments_on_ticket_id"
   end
 
@@ -50,6 +52,11 @@ ActiveRecord::Schema.define(version: 2020_07_01_115951) do
     t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
+  create_table "states", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -57,8 +64,10 @@ ActiveRecord::Schema.define(version: 2020_07_01_115951) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "author_id"
+    t.bigint "state_id"
     t.index ["author_id"], name: "index_tickets_on_author_id"
     t.index ["project_id"], name: "index_tickets_on_project_id"
+    t.index ["state_id"], name: "index_tickets_on_state_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,10 +85,12 @@ ActiveRecord::Schema.define(version: 2020_07_01_115951) do
   end
 
   add_foreign_key "attachments", "tickets"
+  add_foreign_key "comments", "states"
   add_foreign_key "comments", "tickets"
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "roles", "projects"
   add_foreign_key "roles", "users"
   add_foreign_key "tickets", "projects"
+  add_foreign_key "tickets", "states"
   add_foreign_key "tickets", "users", column: "author_id"
 end
