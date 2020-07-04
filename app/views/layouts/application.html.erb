@@ -10,6 +10,13 @@
     </title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <style>
+      <% State.all.each do |state| %>
+        .state-<%= state.name.parameterize %> {
+          background-color: <%= state.color %>;
+        }
+      <% end %>
+    </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
