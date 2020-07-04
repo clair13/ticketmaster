@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_03_165514) do
+ActiveRecord::Schema.define(version: 2020_07_04_142718) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,9 @@ ActiveRecord::Schema.define(version: 2020_07_03_165514) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "state_id"
+    t.bigint "previous_state_id"
     t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["previous_state_id"], name: "index_comments_on_previous_state_id"
     t.index ["state_id"], name: "index_comments_on_state_id"
     t.index ["ticket_id"], name: "index_comments_on_ticket_id"
   end
@@ -86,6 +88,7 @@ ActiveRecord::Schema.define(version: 2020_07_03_165514) do
 
   add_foreign_key "attachments", "tickets"
   add_foreign_key "comments", "states"
+  add_foreign_key "comments", "states", column: "previous_state_id"
   add_foreign_key "comments", "tickets"
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "roles", "projects"
