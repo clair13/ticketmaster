@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Users can create new tickets" do
+  let!(:state) { FactoryBot.create :state, name: "New", default: true }
   let(:user) { FactoryBot.create(:user) }
 
   before do
@@ -18,6 +19,7 @@ RSpec.describe "Users can create new tickets" do
     click_button "Create Ticket"
 
     expect(page).to have_content "Ticket has been created."
+    expect(page).to have_content "State: New"
     within("#ticket") do
       expect(page).to have_content "Author: #{user.email}"
     end
