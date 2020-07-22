@@ -19,7 +19,7 @@ class CommentCreator
   end
 
   def notify_watchers
-    (@comment.tickets.watchers - [@comment.author]).each do |user|
+    (@comment.ticket.watchers - [@comment.author]).each do |user|
       CommentNotifier.created(@comment, user).deliver_now
     end
   end

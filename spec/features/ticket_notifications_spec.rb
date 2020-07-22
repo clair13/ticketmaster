@@ -20,8 +20,8 @@ RSpec.feature "Users can receive notifications about ticket updates" do
     click_button "Create Comment"
 
     email = find_email!(alice.email)
-    expected_subject = "[ticketee] #{project.name} - #{ticket.name}"
-    expect(email.subject).to eq(expected_subject)
+    expected_subject = "[ticketmaster] #{project.name} - #{ticket.name}"
+    expect(email.subject).to eq expected_subject
 
     click_first_link_in_email(email)
     expect(current_path).to eq project_ticket_path(project, ticket)
@@ -40,7 +40,7 @@ RSpec.feature "Users can receive notifications about ticket updates" do
     click_button "Create Comment"
 
     expect(page).to have_content "Comment has been created."
-    expect(unread_emails_for(bob.email).count.to eq 1
-    expect(unread_emails_for(alice.email).count.to eq 0
+    expect(unread_emails_for(bob.email).count).to eq 1
+    expect(unread_emails_for(alice.email).count).to eq 0
   end
 end

@@ -16,9 +16,17 @@ class Ticket < ApplicationRecord
   before_create :assign_default_state
   after_create :author_watches_me
 
-  searcher do
-    label :tag, from: :tags, field: "name"
-    label :state, from: :state, field: "name"
+  #searcher do
+   # label :tag, from: :tags, field: "name"
+    #label :state, from: :state, field: "name"
+  #end
+
+  def self.search(search)
+    if search
+      tag = Tag.find_by(name: search)
+    else
+      Tag.all
+    end
   end
 
   def tag_names=(names)
@@ -31,7 +39,7 @@ class Ticket < ApplicationRecord
   private
 
   def author_watches_me
-    if @author.present? && !self.watchers.include?(@author)
+    if author.present? && !self.watchers.include?(author)
       self.watchers << author
     end
   end

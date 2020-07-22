@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CommentNotifierMailer, type: :mailer do
+RSpec.describe CommentNotifier, type: :mailer do
   describe "created" do
     let(:project) { FactoryBot.create(:project) }
     let(:ticket_owner) { FactoryBot.create(:user) }

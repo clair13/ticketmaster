@@ -2,7 +2,6 @@ class TicketsController < ApplicationController
   before_action :set_project
   before_action :set_ticket, only: [:show, :edit, :update, :destroy, :watch]
   
-
   def search
     authorize @project, :show?
     if params[:search].present?
