@@ -27,7 +27,7 @@ gem 'font-awesome-rails'
 gem 'simple_form'
 gem 'devise', '~> 4.2'
 gem 'pundit', '~> 1.1'
-gem 'carrierwave', '~> 2.0'
+gem 'carrierwave', '~> 2.1'
 gem 'jquery-rails'
 
 
